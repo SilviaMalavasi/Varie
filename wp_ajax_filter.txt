@@ -1,0 +1,142 @@
+HTML
+
+[filter_shortcode]
+
+
+CSS
+
+.cat_select p {
+    display: inline;
+    padding: 0 1rem;
+}
+
+
+JS (filter_category.js)
+
+(function($) {
+
+  function display_cat(page_num, category) {
+    $.ajax({
+      type: 'POST',
+      url: find_ajax.ajaxurl,
+      dataType: 'html',
+      data: {
+        action: 'cat_filter',
+        security: find_ajax.check_nonce,
+        category: category,
+        paged: page_num || 1
+      },
+      success: function(res) {
+        $('.cat_items').fadeOut(500, function() {
+              $('.cat_items').html(res);
+              $(".cat_items").fadeIn(500);
+        });
+      }
+    });
+  }
+
+  $('.cat_list_item').bind('click', function() {
+    $('.cat_list_item').removeClass('active');
+    $(this).addClass('active');
+    var category = $(this).data('slug');
+    display_cat('',category);
+  });
+
+  function scrollToCatselect(){
+      var aTag = $('.cat_select');
+      $('html,body').animate({scrollTop: aTag.offset().top},'slow');
+  }
+  $('.cat_content').on( 'click', '.pagination a', function(e){
+      e.preventDefault();
+      var category = $('.cat_list_item.active').data('slug');
+      var paged = /[\?&]paged=(\d+)/.test( this.href ) && RegExp.$1;
+      display_cat(paged, category);
+      scrollToCatselect();
+  });
+
+})(jQuery);
+
+
+
+
+
+PHP (in functions.php)
+
+function cat_filter_scripts() {
+    wp_enqueue_script( 'filter_category', get_template_directory_uri() . '/js/filter_category.js', array( 'jquery' ), '1.0.0', true );
+    wp_localize_script( 'filter_category', 'find_ajax',
+        array( 
+            'ajaxurl' => admin_url( 'admin-ajax.php' ),
+            'check_nonce' => wp_create_nonce('ajax-nonce')
+        )
+    );
+}
+add_action( 'wp_enqueue_scripts', 'cat_filter_scripts' );
+
+function cat_filter_shortcode ( $atts ) {
+	if ( !is_admin() ) {
+		$filter_contenuto = '<div class="cat_select"><p class="cat_list_item" data-slug="">tutti</p>';
+		$categories = get_categories();
+		foreach($categories as $category) {
+			$filter_contenuto .= '|<p class="cat_list_item" data-slug="' . $category->slug . '">' . $category->name. '</p>';
+		};
+
+		$first_posts = new WP_Query([
+		   'category_name' => '',
+	       'posts_per_page' => 2,
+	       'paged'          => $paged
+	    ]);
+		$filter_contenuto .= '</div><div class="cat_content"><div class="cat_items">';
+		if($first_posts->have_posts()) {
+	   		while($first_posts->have_posts()) : $first_posts->the_post();
+		    	$filter_contenuto .= '<article><p>' . get_the_title() . '</p></article>';
+	    	endwhile;
+  		}
+		$first_links = paginate_links([
+		    'base'    => '%_%',
+		    'format'  => '?paged=%#%',
+		    'total'   => $first_posts->max_num_pages,
+		    'current' => 1,
+		]);
+		if ( $first_links ) {
+			$filter_contenuto .= '<div class="pagination">' . $first_links . '</div></div></div>';
+		}
+		return $filter_contenuto;
+	};
+};
+add_shortcode( 'filter_shortcode', 'cat_filter_shortcode' );
+
+function cat_filter() {
+ 	$catSlug = $_POST['category'];
+	$paged = $_POST['paged'];
+
+	$ajaxposts = new WP_Query([
+	   'category_name' => $catSlug,
+       'posts_per_page' => 2,
+       'paged'          => $paged
+    ]);
+
+	if($ajaxposts->have_posts()) {
+   		while($ajaxposts->have_posts()) : $ajaxposts->the_post();
+	    	$response .= '<article><p>' . get_the_title() . '</p></article>';
+    	endwhile;
+  	} else {
+    	$response = 'non ci sono progetti per questa categoria';
+  	}
+
+	echo $response;
+	$links = paginate_links([
+	    'base'    => '%_%',
+	    'format'  => '?paged=%#%',
+	    'total'   => $ajaxposts->max_num_pages,
+	    'current' => $paged,
+	]);
+	if ( $links ) {
+		    echo '<div class="pagination">';
+		        echo $links;
+		    echo '</div>';
+	}
+	exit;
+}
+add_action('wp_ajax_cat_filter', 'cat_filter');
+add_action('wp_ajax_nopriv_cat_filter', 'cat_filter');

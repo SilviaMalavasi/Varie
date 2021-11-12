@@ -1,0 +1,23 @@
+$(document).click(function(event) {
+  if ($('#menuToggle').hasClass('open_menu')) {
+    $(document).click(function(event) { 
+      var $target = $(event.target);
+      if(!$target.closest('#menu_mobile .cont_mob').length && !$target.closest('#menuToggle').length && !$target.closest('#cerca').length) {
+          $('#menuToggle').removeClass('open_menu');
+      };
+    });
+  };
+});
+
+$('#mobile_menu li.menu-item-has-children').on("touchstart", function (e) {
+	var link = $(this);
+	if (link.hasClass('hover')) {
+		return true;
+ } 
+else {
+   link.addClass('hover');
+   $('ul > li').not(this).removeClass('hover');
+   e.preventDefault();
+   return false;
+  }
+});

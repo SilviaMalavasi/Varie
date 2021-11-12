@@ -1,0 +1,46 @@
+HTML
+
+<div class="titolo_accordion">
+	<h4>titolo</h4>
+</div>
+<div class="corpo_accordion">
+</div>
+
+
+CSS
+
+.gira_freccia {
+    transform: rotate(180deg);
+    transition: all 0s;
+}
+
+JS
+
+$(function() {
+  if($('.titolo_accordion').length) {
+
+    $('.titolo_accordion h4').after('<svg class="gira_freccia" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.552 13.466"> <path d="M11.78,9.407,20.686.494a1.676,1.676,0,0,1,2.377,0,1.7,1.7,0,0,1,0,2.384l-10.091,10.1a1.68,1.68,0,0,1-2.321.049L.491,2.886A1.683,1.683,0,0,1,2.868.5Z" fill="#8f8f8f"/></svg>');
+
+    var allPanels = $('.corpo_accordion').hide();
+    var allArrows = $('.titolo_accordion svg');
+
+    $('.corpo_accordion.primo').addClass('active').show();
+    $('.corpo_accordion.primo').prev('.titolo_accordion').find('svg').removeClass('gira_freccia');
+
+    $('.titolo_accordion').click(function() {
+      $this = $(this);
+      $target =  $this.next('.corpo_accordion');
+
+      if(!$target.hasClass('active')){
+         allPanels.removeClass('active').slideUp();
+         $target.addClass('active').slideDown();
+		 allArrows.removeClass('gira_freccia');
+		 $this.find('svg').addClass('gira_freccia');
+      }
+	  
+
+      return false;
+  });
+
+  };
+});

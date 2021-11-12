@@ -1,0 +1,100 @@
+HTML
+
+	<div class="tabs">
+		<nav class="tab">
+	  		<li class="prima active">il mio profilo</li>
+	  		<li class="seconda">i miei preferiti</li>
+	  		<li class="terza">calendario</li>
+	  		<li class="quarta">i miei webinar</li>
+	  		<div id="tab_line"></div>
+		</nav>
+
+		<div class="tab_content">
+			<div class="prima tab_panel first_tab">
+				<p>Lorem ipsum 2</p>		
+			</div>
+			<div class="seconda tab_panel">
+				<p>Lorem ipsum 2</p>
+			</div>
+			<div class="terza tab_panel">
+				<p>Lorem ipsum 3</p>
+			</div>
+			<div class="quarta tab_panel">
+				<p>Lorem ipsum 4</p>
+			</div>
+		</div>
+	</div>
+
+
+CSS
+
+.tab {
+    display: table;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 3rem;
+}
+.tab li {
+    cursor: pointer;
+    transition: opacity 0.2s;
+    list-style: none;
+    padding: 1rem;
+    font-weight: 800;
+    display: inline-block;
+}
+#tab_line {
+    display: block;
+    height: 3px;
+    left: 0;
+    width: 8rem;
+    position: absolute;
+    bottom: 0;
+    background: #000;
+    transition: all 0.2s;
+}
+.tab li.active {
+    color: var(--arancio);
+}
+.tab_content {
+    display: flex;
+    margin-top: 2rem;
+}
+.tab_panel {
+    display: block;
+    visibility: hidden;
+    margin-right: -100%;
+    width: 100%;
+    transition: all 0.2s;
+}
+.first_tab {
+    visibility: visible;
+}
+
+JS
+
+$(function() {
+   	$('.tab_line').each(function() {
+   		var start_width = $(this).parent().find('li:first-of-type').outerWidth();
+   		$(this).width(start_width);
+   	});
+});
+
+$('.tab li').on('click tap',function() {
+
+	// Cambia la tab visibile
+
+	$(this).parent().next().find('.tab_panel').css({"visibility": "hidden"});
+	$(this).parent().find('li').removeClass('active');
+	var name = $(this).attr("class");
+	$(this).parent().next().find('.' + name + '').css({"visibility": "visible"});
+	$(this).addClass('active');
+
+	// Muovi la linea
+
+	var width = $(this).outerWidth();
+	var position = $(this).position();
+	var this_line = $(this).parent().find('.tab_line');
+	this_line.width(width);
+	this_line.css('left', position.left);
+
+});

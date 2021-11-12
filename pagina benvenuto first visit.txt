@@ -1,0 +1,15 @@
+/* Functions PHP */
+
+add_filter( 'template_include', 'first_time_visitor_template', 99 );
+function first_time_visitor_template( $template ) {
+	if(wp_is_mobile()) {
+		if (!isset($_COOKIE['visited'])) {
+    	wp_enqueue_script( 'benvenuto', get_template_directory_uri() . '/js/benvenuto.js', array(), '1.0.0', true );
+    	setcookie ('visited', 'yes', time() + 36000000000);
+        $new_template = locate_template( array( 'benvenuto.php' ) );
+        if ( '' != $new_template ) {
+            return $new_template ;
+   		 }
+	}}
+    return $template;
+}

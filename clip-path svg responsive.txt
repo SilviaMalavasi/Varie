@@ -1,0 +1,24 @@
+CSS 
+
+.clip_mask {
+	width: 100%;
+	height: 100%;
+}
+.clip_mask img {
+	width: 100%;
+	height: 100%;
+    	object-fit: cover;
+        -webkit-clip-path: url('#maschera');
+	clip-path: url('#maschera');
+}
+
+
+HTML
+
+<div class="clip_mask">
+	<img src="./image.jpg">
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 705.02 690.81" max-width="100%" width="100" max-height="100vh" height="100"><defs><clipPath id="maschera" clipPathUnits="objectBoundingBox" transform="scale(0.001418399478029, 0.0014475760339312)"><path d="M71.81,204.83l387-191.4c71.7-35.5,158.1,2.3,180.8,79l60.1,203a129,129,0,0,1-45.5,139.2l-301.8,229.8c-61.1,46.5-149,29.7-188.6-36.1L18.51,386.83A128.83,128.83,0,0,1,71.81,204.83Z"></path></clipPath></defs></svg>
+</div>
+
+
+NOTA: transform="scale(x, y)" dove x = 1/viewbox width e y = 1/viewbox height

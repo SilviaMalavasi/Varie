@@ -1,0 +1,42 @@
+
+HTML
+<div id="scrollTopBtn" preserveAspectRatio="none" width="100%" height="100%" title="Go to top"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58.35 53.96"><path d="M42.13,54l-13-32.64L16.22,54H0L24,0H34.38l24,54Z"/></svg></div>
+
+CSS
+
+#scrollTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 4vh;
+  right: 4vh;
+  z-index: 99;
+  cursor: pointer;
+}
+#scrollTopBtn svg {
+    width: 2rem;
+    height: 2rem;
+}
+#scrollTopBtn svg path {
+    fill: #0075bf;
+}
+#scrollTopBtn:hover svg path {
+    fill: #f39200;
+}
+
+
+JS
+
+button = document.getElementById("scrollTopBtn");
+window.onscroll = function() {scrollFunction()};
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    button.style.display = "block";
+  } else {
+    button.style.display = "none";
+  }
+};
+$('body').on('click', '#scrollTopBtn', function() {
+    $("html, body").animate({ scrollTop: 0 }, 800);
+      return false;
+});
+

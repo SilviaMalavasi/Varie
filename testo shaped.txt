@@ -1,0 +1,22 @@
+
+HTML
+
+<div class="shaped"></div>
+<div>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean fringilla vitae velit quis facilisis. Nullam libero risus, condimentum eget purus sed, sodales ultricies ex. Phasellus blandit ultricies dignissim. Integer tempor quam eu imperdiet tristique. Curabitur varius vehicula arcu, nec lacinia turpis laoreet vulputate. Proin eleifend leo vel nunc porttitor, vitae facilisis nisl ullamcorper. In id enim ornare, aliquam lectus vitae, interdum nisl. Phasellus egestas, nibh sed bibendum feugiat, neque nisi lacinia orci, sit amet tempus ante lacus id magna. Cras id mattis dolor. Duis quis sagittis mi. Vestibulum id ultrices nisi. Donec dolor augue, gravida vel euismod eget, consectetur non erat. Nullam vestibulum lacinia vehicula.
+</p>
+</div>
+
+
+CSS
+
+.shaped {
+    width: 20vw;
+    height: 40vh;
+    -webkit-shape-outside: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    shape-outside: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    float:left;
+}

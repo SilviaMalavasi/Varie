@@ -1,0 +1,37 @@
+HTML
+<div class="titolo_accordion">
+	<h4>titolo</h4>
+	<svg class="freccia" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.48 14.54"><title>giu</title><path d="M10.34,12.69l7.14-11L15,.05l-7.14,11ZM0,1.74l7.86,11L10.3,11,2.44,0ZM9.08,11.87l-1.22.87,1.28,1.8,1.2-1.85Z"/></svg>
+</div>
+<div class="corpo_accordion">
+</div>
+
+
+CSS
+.titolo_accordion {
+    cursor: pointer;
+}
+.titolo_accordion p:first-child, .titolo_accordion h2:first-child, .titolo_accordion h3:first-child, .titolo_accordion h4:first-child {
+    display: inline-block;
+}
+.freccia {
+    width: 1rem;
+}
+.gira_freccia {
+    transform: rotate(180deg);
+}
+.corpo_accordion {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s;
+}
+.corpo_accordion.apri_accordion {
+    max-height: 1000vh;
+}
+
+
+JS
+$('.titolo_accordion').on('click tap',function(){
+	$(this).next().toggleClass('apri_accordion');
+	$(this).find('svg').toggleClass('gira_freccia');
+});

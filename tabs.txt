@@ -1,0 +1,74 @@
+HTML
+<div class="tabs">
+	<nav class="tab">
+  		<li class="prima active">il mio profilo</li>
+  		<li class="seconda">i miei preferiti</li>
+  		<li class="terza">calendario</li>
+  		<li class="quarta">i miei webinar</li>
+	</nav>
+
+	<div class="tab_content">
+		<div class="prima tab_panel first_tab">
+			<p>Lorem ipsum 2</p>		
+		</div>
+		<div class="seconda tab_panel">
+			<p>Lorem ipsum 2</p>
+		</div>
+		<div class="terza tab_panel">
+			<p>Lorem ipsum 3</p>
+		</div>
+		<div class="quarta tab_panel">
+			<p>Lorem ipsum 4</p>
+		</div>
+	</div>
+</div>
+
+
+CSS
+
+/* Tabs */
+
+.tab {
+    display: table;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 3rem;
+}
+.tab li {
+    cursor: pointer;
+    transition: opacity 0.2s;
+    list-style: none;
+    padding: 1rem;
+    font-weight: 800;
+    display: inline-block;
+}
+.tab li.active {
+    color: var(--arancio);
+}
+.tab_content {
+    display: flex;
+    margin-top: 2rem;
+}
+.tab_panel {
+    display: block;
+    visibility: hidden; /* Oppure display:none; */
+    margin-right: -100%;
+    width: 100%;
+    transition: all 0.2s;
+}
+.first_tab {
+    visibility: visible; /* Oppure display:block; */
+}
+
+
+JS
+
+$('.tab li').on('click tap',function() {
+		
+	$(this).parent().next().find('.tab_panel').css({"visibility": "hidden"}); /* Oppure display:block; */
+	$(this).parent().find('li').removeClass('active');
+	var name = $(this).attr("class");
+	$(this).parent().next().find('.' + name + '').css({"visibility": "visible"}); /* Oppure display:block; */
+	$(this).addClass('active');
+
+});

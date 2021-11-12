@@ -1,0 +1,9 @@
+	var img = $('l'immagine');
+
+	$(img).one("load", function() {
+		fai quello che devi
+	}).each(function() {
+	  if(this.complete) {
+	      $(this).load();
+	  }
+	});

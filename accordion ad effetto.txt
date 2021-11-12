@@ -1,0 +1,64 @@
+HTML
+
+<div id='bottone_piu'></div>
+<div class='blocco_apribile>
+	<div class='riga_blocco_apribile'>
+	</div>
+	<div class='riga_blocco_apribile'>
+	</div>
+</div>
+
+CSS
+
+.bottone_piu img {
+    width: 3.4rem;
+    transition: all 0.4s;
+    cursor: pointer;
+    margin-top: 0.4rem;
+}
+.bottone_piu.open img {
+    transform: rotate(180deg);
+    transform-origin: 50% 50%;
+}
+.blocco_apribile {
+	height: 0;
+	transition: all 0.4s;
+	overflow: hidden;
+}
+.blocco_apribile.open {
+	height: auto;
+}
+.riga_blocco_apribile.open {
+	transform: scaleY(1);
+}
+.riga_blocco_apribile {
+    padding: 0;
+	transition: all 0.4s;
+	transform: scaleY(0);
+}
+
+
+
+JS 
+
+$('.bottone_piu').click(function() {
+		var bottone = $(this);
+		var da_aprire = $(this).next();
+		var figlie_da_aprire = da_aprire.children().children();
+		console.log(bottone, figlie_da_aprire, da_aprire)
+ 		function open(el) {
+			$(el).toggleClass('open');
+		}
+		if(da_aprire.hasClass('open')) {
+			open(bottone);
+			open(figlie_da_aprire);
+			setTimeout(function() {open(da_aprire);}, 400);
+		}
+		else {
+			open(bottone);
+			open(da_aprire);
+			open(figlie_da_aprire);
+		}
+	});
+
+})(jQuery);

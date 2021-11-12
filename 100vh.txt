@@ -1,0 +1,29 @@
+JS
+
+function appHeight() {
+  var actualHeight = window.innerHeight;
+  var elementHeight = $('.cont')[0].clientHeight;
+
+  var barHeight = elementHeight - actualHeight;
+
+  var doc = document.documentElement;
+  doc.style.setProperty('--app-height', actualHeight - barHeight + 'px');
+  $('.cont').height(actualHeight - barHeight);
+  return;
+};
+appHeight();
+
+
+CSS
+.cont {
+	height: 100vh;
+}
+img {
+	height: var(--app-height);
+}
+
+
+HTML
+<div class="cont">
+	<img src="...">
+</div>

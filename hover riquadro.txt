@@ -1,0 +1,42 @@
+.home #menu-main-menu .hoverdiv {
+    position: absolute;
+	color: #fff;
+	left: 96%;
+    width: 4%;
+    height: 5.5vw;
+    text-align: center;
+    padding-top: 3vw;
+	-webkit-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+}
+.home #menu-main-menu > li .hoverdiv a {
+	opacity: 0;
+}
+.home #menu-main-menu > li:hover > .hoverdiv {
+	left: 56%;
+    width: 44%;
+    padding-top: 3vw;
+}
+.home #menu-main-menu > li:hover > .hoverdiv a {
+	opacity: 1;
+	-webkit-transition: all 0.3s linear 0.2s;
+	transition: all 0.3s linear 0.2s;
+}
+.home #menu-main-menu > li:nth-of-type(4) .hoverdiv {
+	background: rgba(122,193,66);
+}
+.home #menu-main-menu > li:nth-of-type(5) .hoverdiv {
+		background: rgba(0,177,176);
+}
+.home #menu-main-menu > li:nth-of-type(6) .hoverdiv {
+	background: rgba(0,125,195);
+}
+.home #menu-main-menu > li:nth-of-type(4):hover > .hoverdiv {
+	background: rgba(122,193,66,0.7);
+}
+.home #menu-main-menu > li:nth-of-type(5):hover > .hoverdiv {
+		background: rgba(0,177,176,0.7);
+}
+.home #menu-main-menu > li:nth-of-type(6):hover > .hoverdiv {
+	background: rgba(0,125,195,0.7);
+}
