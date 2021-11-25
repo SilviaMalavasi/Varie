@@ -3,6 +3,10 @@
       trigger: '#ilvideo',
       start: () => `- ${window.innerHeight*0.3}`,
       end: 'bottom top',
-      onToggle: self => self.isActive ? playVideo("ilvideo") : pauseVideo("ilvideo"),
+      onToggle: self => self.isActive ? $("#ilvideo").get(0).play() : $("#ilvideo").get(0).pause(),
       toggleActions: 'play pause reverse none'
     })
+
+
+
+Nota: il video deve essere mutato
