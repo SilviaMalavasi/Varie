@@ -1,0 +1,8 @@
+    ScrollTrigger.create({
+      scrub: true,
+      trigger: '#ilvideo',
+      start: () => `- ${window.innerHeight*0.3}`,
+      end: 'bottom top',
+      onToggle: self => self.isActive ? playVideo("ilvideo") : pauseVideo("ilvideo"),
+      toggleActions: 'play pause reverse none'
+    })

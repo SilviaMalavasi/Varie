@@ -1,0 +1,24 @@
+CSS
+
+#el {
+    transform: translateY(3vh);
+    opacity: 0;
+}
+
+
+JS
+
+      const fade_in_up = gsap.to(('#el'), { y: '-=3vh', opacity: '1', duration: 1, paused: true });
+
+      ScrollTrigger.create({
+        trigger: ('#el'),
+        start: "top 60%",
+        onEnter: () => fade_in_up.play(),
+      });
+        
+      ScrollTrigger.create({
+        trigger: ('#el'),
+        start: "top bottom",
+        onEnterBack: () => fade_in_up.restart(),
+        onLeaveBack: () => fade_in_up.pause(0),
+      });
