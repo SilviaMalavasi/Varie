@@ -1,0 +1,17 @@
+JS
+
+$('.from').on('click', function (event) {
+    event.preventDefault();
+        var to = $(this).attr('id') + '_target';
+        $('html, body').animate({
+        scrollTop: $("#" + to).offset().top
+    }, 1000);
+});
+
+
+
+HTML
+
+<div class="from" id="the_target_div"></div>
+
+<div id="the_target_div_target"></div>
