@@ -1,0 +1,5 @@
+    $(document).ready(function(){
+        $(".bg_img img").not(function() {
+            return this.complete && $(this).addClass('visible');
+        }).bind("load", function () { $(this).addClass('visible'); });
+     });
