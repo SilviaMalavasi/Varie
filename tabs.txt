@@ -1,14 +1,14 @@
 HTML
 <div class="tabs">
 	<nav class="tab">
-  		<li class="prima active">il mio profilo</li>
-  		<li class="seconda">i miei preferiti</li>
-  		<li class="terza">calendario</li>
-  		<li class="quarta">i miei webinar</li>
+  		<div class="prima">il mio profilo</div>
+  		<div class="seconda">i miei preferiti</div>
+  		<div class="terza">calendario</div>
+  		<div class="quarta">i miei webinar</div>
 	</nav>
 
 	<div class="tab_content">
-		<div class="prima tab_panel first_tab">
+		<div class="prima tab_panel">
 			<p>Lorem ipsum 2</p>		
 		</div>
 		<div class="seconda tab_panel">
@@ -34,41 +34,55 @@ CSS
     margin: 0 auto;
     margin-top: 3rem;
 }
-.tab li {
+.tab>div {
     cursor: pointer;
-    transition: opacity 0.2s;
+    transition: all 0.2s;
     list-style: none;
     padding: 1rem;
     font-weight: 800;
     display: inline-block;
 }
-.tab li.active {
+.tab>div.active-nav {
     color: var(--arancio);
 }
-.tab_content {
-    display: flex;
-    margin-top: 2rem;
-}
 .tab_panel {
-    display: block;
-    visibility: hidden; /* Oppure display:none; */
-    margin-right: -100%;
-    width: 100%;
-    transition: all 0.2s;
+	display: block;
+	opacity: 0;
+	position: absolute;
+	width: 100%;
+	transition: all 0.2s;
+	z-index: 0;
 }
-.first_tab {
-    visibility: visible; /* Oppure display:block; */
+.tab_panel.active-tab {
+	opacity: 1;
+	z-index: 10;
 }
+
 
 
 JS
 
-$('.tab li').on('click tap',function() {
-		
-	$(this).parent().next().find('.tab_panel').css({"visibility": "hidden"}); /* Oppure display:block; */
-	$(this).parent().find('li').removeClass('active');
-	var name = $(this).attr("class");
-	$(this).parent().next().find('.' + name + '').css({"visibility": "visible"}); /* Oppure display:block; */
-	$(this).addClass('active');
+$('.tab>div>div').on('click tap',function() {
+        
+  $(this).parent().parent().find('div').removeClass('active-nav');
+  $(this).parent().parent().next().find('.tab_panel').removeClass('active-tab');
+  var name = $(this).attr("class").replace('swiper-slide','').replace('swiper-slide-next','').replace('swiper-slide-active','');
+  $(this).addClass('active-nav');
+  $(this).parent().parent().next().find('.' + name + '').addClass('active-tab');
+  var active_height = $('.active-tab').outerHeight();
+  $('.tab_content').outerHeight(active_height);
 
+});
+
+$(window).load(function() {
+
+  if ($('.page-template-page-menu-template').length > 0) {
+
+    $('.tab_content>div:first-of-type').addClass('active-tab');
+    $('.tab>div>div:first-of-type').addClass('active-nav');
+
+    var active_height = $('.active-tab').outerHeight();
+    $('.tab_content').outerHeight(active_height);
+
+  };
 });

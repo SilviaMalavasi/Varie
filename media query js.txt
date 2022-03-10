@@ -1,8 +1,16 @@
 // Create a media condition that targets viewports at least 768px wide
-const mediaQuery = window.matchMedia('(min-width: 768px)')
+const mediaQuery = window.matchMedia('(min-width: 768px)')matches;
 
 // Check if the media query is true
-if (mediaQuery.matches) {
+if (mediaQuery) {
   // Then trigger an alert
   alert('Media Query Matched!')
 }
+
+
+
+// Update 2022
+
+const mediaQueryAllMobile = window.matchMedia('(max-width: 1024px) and (orientation: portrait)') || window.matchMedia('(max-width: 813px)').matches;
+const mediaQueryTablets = window.matchMedia('(min-width: 783px) and (max-width: 1024px) and (orientation: portrait)').matches;
+const mediaQueryPhones = window.matchMedia('(max-width:782px)').matches;
