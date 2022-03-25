@@ -1,0 +1,5 @@
+    echo '<script>
+    var jsArray = [];
+    var jsArray = ' . json_encode($array).'
+    console.log(jsArray);
+    </script>';
