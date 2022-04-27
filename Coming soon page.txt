@@ -1,0 +1,12 @@
+In .httacces
+
+RewriteEngine On
+
+RewriteBase /
+
+RewriteCond %{REQUEST_URI} !^/coming-soon.html$
+
+RewriteRule ^(.*)$ https://example.com/coming-soon.html [R=307,L]
+
+
+

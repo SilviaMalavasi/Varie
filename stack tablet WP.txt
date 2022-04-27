@@ -1,0 +1,11 @@
+CSS
+
+.stack-tablet {
+    flex-wrap: wrap;
+}
+.stack-tablet.wp-block-columns:not(.is-not-stacked-on-mobile)>.wp-block-column:not(:only-child) {
+    flex-basis: 100%!important;
+}
+.stack-tablet.wp-block-columns:not(.is-not-stacked-on-mobile)>.wp-block-column:not(:first-child) {
+    margin-left: 0;
+}
