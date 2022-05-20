@@ -1,12 +1,16 @@
-In .httacces
+In functions.php
 
-RewriteEngine On
-
-RewriteBase /
-
-RewriteCond %{REQUEST_URI} !^/coming-soon.html$
-
-RewriteRule ^(.*)$ https://example.com/coming-soon.html [R=307,L]
-
+//redirect non-users to the coming soon page
+function coming_soon_redirect()
+{
+	global $pagenow;
+	
+	if(!is_user_logged_in() && !is_page("login") && !is_page("coming-soon") && $page_now != "wp-login.php")
+	{
+		wp_redirect(home_url("coming-soon"));
+		exit;
+	}
+}
+add_action('template_redirect', 'coming_soon_redirect');
 
 

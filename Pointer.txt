@@ -1,0 +1,47 @@
+HTML
+
+<div class="cursor"></div>
+
+
+CSS
+
+.cursor {
+	display: none;
+	pointer-events: none;
+	position: fixed;
+	padding: 0.3rem;
+	background-color: #fff;
+	border-radius: 50%;
+	mix-blend-mode: difference;
+	transition: transform 0.3s ease;
+	z-index: 10000;
+}
+.cursor-grande {
+	transform:translate(-50%, -50%) scale(7);
+}
+
+
+
+JS
+
+$(function() {
+
+    const editCursor = e => {
+	    $('.cursor').css('display','block');
+	    $('body, a').css('cursor','none');
+
+          const { clientX: x, clientY: y } = e;
+          $('.cursor').css("left", x + 'px');
+          $('.cursor').css("top", y + 'px');
+    };
+
+    window.addEventListener('mousemove', editCursor);
+
+    $('a').mouseenter(() => {
+        $('.cursor').addClass('cursor-grande')
+    });
+    $('a').mouseleave(() => {
+        $('.cursor').removeClass('cursor-grande')
+    });
+
+});

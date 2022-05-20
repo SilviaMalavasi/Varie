@@ -52,10 +52,13 @@ CSS
 	width: 100%;
 	transition: all 0.2s;
 	z-index: 0;
+    	height: 0;
+    	overflow: hidden;
 }
 .tab_panel.active-tab {
 	opacity: 1;
 	z-index: 10;
+    	height: auto;
 }
 
 

@@ -1,0 +1,14 @@
+/* Translatepress custom flags */
+
+add_filter( 'trp_flags_path', 'trpc_flags_path', 10, 2 );
+function trpc_flags_path( $original_flags_path,  $language_code ){
+
+	// only change the folder path for the following languages:
+	$languages_with_custom_flags = array( 'en_GB', 'it_IT' );
+
+	if ( in_array( $language_code, $languages_with_custom_flags ) ) {
+		return  get_stylesheet_directory_uri() . '/assets/flags/' ;
+	}else{
+		return $original_flags_path;
+	}
+}
