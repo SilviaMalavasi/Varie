@@ -1,0 +1,9 @@
+            <?php  foreach( $blocks as $block ) {
+                       if( 'acf/dati-progetto-block' === $block['blockName'] ) {
+                        if($block['attrs']['data']['NOME DEL CAMPO']){
+                            echo '<h4>'.$block['attrs']['data']['NOME DEL CAMPO'].'</h4>';
+                        } 
+                        break;
+                        }
+                    }
+            ?>

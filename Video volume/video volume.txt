@@ -1,0 +1,59 @@
+HTML 
+
+<div class="volume_cont">
+	<div class="speaker"></div>
+	<div class="croce"></div>
+</div>
+
+
+CSS
+
+.volume_cont {
+    position: absolute;
+    top: 90vh;
+    left: var(--padding-piccolo);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    width: 2.7vw;
+    height: 2.7vw;
+    border-radius: 50%;
+    border: 0.15vw solid white;
+    -webkit-box-shadow: 0px 3px 6px 0px rgb(0 0 0 / 32%);
+    box-shadow: 0px 3px 6px 0px rgb(0 0 0 / 32%);
+}
+.speaker {
+    width: 1vw;
+    height: 1vw;
+    background: url('./assets/speaker.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+.croce {
+    width: 1vw;
+    height: 1vw;
+    background: url('./assets/croce.svg');
+    background-repeat: no-repeat;
+    background-size: 70% 70%;
+    background-position: 50% 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.volume_cont.vol_no .croce {
+    transform: rotate(45deg);
+}
+
+
+JS
+$('body').on('click tap', '.volume_cont', function() {
+    var video = $(this).parent().find('video');
+    video[0].muted = false;
+    $(this).addClass('vol_no');
+  });
+  $('body').on('click tap', '.volume_cont.vol_no', function() {
+    var video = $(this).parent().find('video');
+    video[0].muted = true;
+    $(this).removeClass('vol_no');
+  });

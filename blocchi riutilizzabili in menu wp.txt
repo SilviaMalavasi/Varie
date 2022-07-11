@@ -1,0 +1,6 @@
+/* Blocchi riutilizzabili in menu */
+
+add_action( 'admin_menu', 'reusable_blocks_link_wp_admin' );
+function reusable_blocks_link_wp_admin() {
+    add_menu_page( 'linked_url', 'Blocchi Riutilizzabili', 'read', 'edit.php?post_type=wp_block', '', 'dashicons-editor-table', 22 );
+}

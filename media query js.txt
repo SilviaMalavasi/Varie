@@ -11,6 +11,6 @@ if (mediaQuery) {
 
 // Update 2022
 
-const mediaQueryAllMobile = window.matchMedia('(max-width: 1024px) and (orientation: portrait)') || window.matchMedia('(max-width: 813px)').matches;
-const mediaQueryTablets = window.matchMedia('(min-width: 783px) and (max-width: 1024px) and (orientation: portrait)').matches;
-const mediaQueryPhones = window.matchMedia('(max-width:782px)').matches;
+const mediaQueryAllMobile = window.matchMedia('(max-width: 1024px) and (orientation: portrait)').matches || window.matchMedia('(max-width: 781px)').matches;
+const mediaQueryTablets = window.matchMedia('(min-width: 782px) and (max-width: 1024px) and (orientation: portrait)').matches;
+const mediaQueryPhones = window.matchMedia('(max-width:781px)').matches;

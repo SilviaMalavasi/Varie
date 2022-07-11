@@ -1,0 +1,8 @@
+$imageobject = get_field('immagine');
+                
+if( !empty($imageobject) ):
+
+echo '<img loading="lazy" alt="' . $imageobject['alt'] . '" title="' . $imageobject['title'] . '" src="' . $imageobject['url'] . '" width="' . $imageobject['width'] . '" height="' . $imageobject['height'] . '" srcset="' . $imageobject['sizes']['large'] .' '. $imageobject['sizes']['large-width'] .'w, '. $imageobject['sizes']['medium'] .' '.  $imageobject['sizes']['medium-width'] .'w, '. $imageobject['sizes']['thumbnail'] .' '.  $imageobject['sizes']['thumbnail-width'] .'w" sizes="(max-width: 1920px) 100vw, 1920px">';
+
+endif;
+

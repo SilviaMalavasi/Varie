@@ -1,0 +1,13 @@
+.contenitore {
+	width: 29vw;
+    	padding-left: 1vw;
+	columns: 3;
+	column-fill: auto;
+	display: block;
+}
+figure {
+	width: 100%;
+	height: auto;
+    	margin-bottom: 0.7vw;
+	display: inline-block;
+}

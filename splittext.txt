@@ -1,0 +1,34 @@
+JS
+    
+function splitText(text_to_split) {
+   var string = $(text_to_split).text();
+   var splitted_text = "";
+   for (var i = 0; i < string.length; i++) {
+       splitted_text += string.charAt(i).replace(/\S/g, '<span class="splitting-animation" style="animation-delay: calc(30ms * ' + i + ')">$&</span>');
+   }
+   $(text_to_split).html(splitted_text);
+   $(text_to_split).css('opacity','1');
+}
+
+
+CSS
+
+.text_to_split {
+	opacity: 0;
+	overflow: hidden;
+}
+.splitting {
+    overflow: hidden;
+}
+.splitting-animation {
+    animation: slide-in 1s ease forwards;
+    transform: translateY(20rem) rotate(10deg);
+    opacity: 0;
+    display: inline-block;
+} 
+@keyframes slide-in {
+    to {
+        transform: translateY(0) rotate(0);
+        opacity: 1;
+    }
+}

@@ -1,0 +1,8 @@
+        <?php
+            $footer_query = new WP_Query( array( 'page_id' => 93 ) );
+                while ( $footer_query->have_posts() ) {
+                    $footer_query->the_post();
+                    the_content();
+                }
+            wp_reset_postdata();
+        ?>

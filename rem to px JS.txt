@@ -1,0 +1,7 @@
+let rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+
+
+// Se voglio arrotondare una variabile cerchio di 1.1rem //
+
+let circle = parseInt(rem * 1.1);
+document.documentElement.style.setProperty('--circle', circle + "px");
