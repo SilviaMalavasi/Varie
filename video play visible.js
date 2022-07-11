@@ -1,23 +1,18 @@
 // Video play visible //
 
 
-$(function() {
+if($('video').length) {
+  const videos = gsap.utils.toArray('video');
+  videos.forEach( video => {
+                 
+  ScrollTrigger.create({
+      scrub: true,
+      trigger: video,
+      start: () => `- ${window.innerHeight*0.3}`,
+      end: 'bottom top',
+      onToggle: self => self.isActive ? video.play() : video.pause(),
+      toggleActions: 'play pause reverse none'
+   })
 
-function isInView(elem){
-  return ($(elem).offset().top - $(window).scrollTop() < $(elem).height() || $(elem).offset().bottom - $(window).scrollTop() < 0 );
-}
-
-$('video').each(function (index, elem) {
-  var played = false;
-    $(window).scroll(function() {
-      if (isInView(elem) && !played) {
-          played = true;
-          elem.play();
-      };
-      if (!isInView(elem) && played) {
-          played = false;
-      };
-  })
 });
-
-}); 
+};  
