@@ -1,0 +1,13 @@
+function custom_wc_translations($translated){
+  $text = array(
+    "Il tuo ordine" => "Riepilogo prenotazioni",
+    "Ritorna al negozio" => "torna al programma",
+    "Procedi con l'ordine" => "procedi con la prenotazione",
+    "Il tuo carrello è vuoto." => "Non hai prenotazioni",
+    "Aggiungi al carrello" => "prenota",
+  );
+  $translated = str_ireplace(  array_keys($text),  $text,  $translated );
+  return $translated;
+}
+
+add_filter( 'gettext', 'custom_wc_translations', 20 );
