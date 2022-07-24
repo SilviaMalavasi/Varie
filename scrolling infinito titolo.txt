@@ -1,0 +1,38 @@
+JS
+
+$(function() {
+    if($('.anima-titolo').length) {
+        anima_titolo_width = $('.anima-titolo h1').outerWidth();
+        let anima_titolo_duration = $('.anima-titolo h1').outerWidth() * 0.04;
+        document.documentElement.style.setProperty('--anima-titolo-width', anima_titolo_width + "px");
+        document.documentElement.style.setProperty('--anima-titolo-duration', anima_titolo_duration + "s");
+        $('.anima-titolo').css('opacity', '1');
+    }
+});
+
+
+
+
+CSS
+
+.anima-titolo {
+	opacity: 0;
+	height: 31rem;
+	width: calc(var(--anima-titolo-width) * 4);
+	animation: scroll var(--anima-titolo-duration) linear infinite;
+	transition: all 0.2s ease;
+}
+@keyframes scroll {
+	0% {
+	  transform: translateX(0);
+	}
+	100% {
+	  transform: translateX(calc(var(--anima-titolo-width) * 2 * -1));
+	}
+}
+
+HTML
+
+<div class="anima-titolo">
+        <h1 >Altro sito</h1><span>Altro sito</span><span>Altro sito</span><span>Altro sito</span>
+</div>

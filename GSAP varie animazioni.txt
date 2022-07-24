@@ -1,64 +1,203 @@
-Nota: fade-in-right-stagger è  l'elemento che si muove
-
 // GSAP - Fade in right stagger
     
     
     if($('.fade-in-right-stagger').length) {
+      
+        $('.fade-in-right-stagger-cont').each(function() {
+            if(!mediaQueryPhonesAndSmallTablets) {
+
+                const fade_in_right_this_stagger = $(this).find(".fade-in-right-stagger");
+
+                const fade_in_right_stagger_anim = gsap.to(fade_in_right_this_stagger, {
+                            duration: 1,
+                            x: 0,
+                            opacity: 1,
+                            ease: "power1.inOut",
+                            stagger: {
+                            from: 0,
+                            amount: 0.5
+                            }
+                });
+                    
+                fade_in_right_stagger_anim.pause(0);
+                        
+                ScrollTrigger.create({
+                           trigger: fade_in_right_this_stagger,
+                            start: 'top 70%',
+                            onEnter: () => fade_in_right_stagger_anim.play(),
+                            onLeave: () => fade_in_right_stagger_anim.pause(0),
+                });
+                
+                ScrollTrigger.create({
+                            trigger: fade_in_right_this_stagger,
+                            start: "top bottom",
+                            onEnterBack: () => fade_in_right_stagger_anim.restart(),
+                            onLeaveBack: () => fade_in_right_stagger_anim.pause(0),
+                });
+        
+                if (($(this)[0].getBoundingClientRect().top) < window.innerHeight) {
+                    fade_in_right_stagger_anim.play();
+                 }
+              };
+            
+              if(mediaQueryPhonesAndSmallTablets) {
+            
+                const  fade_in_right_staggers = gsap.utils.toArray('.fade-in-right-stagger');
+                fade_in_right_staggers.forEach( fade_in_right_stagger => {
+                        
+                const fade_in_right_anim = gsap.to(fade_in_right_stagger, { x: '0', opacity: '1', duration: 1.5, paused: true });
+                        
+                ScrollTrigger.create({
+                  trigger: fade_in_right_stagger,
+                  start: top_pos_animations,
+                  onEnter: () => fade_in_right_anim.play(),
+                });
+                    
+                ScrollTrigger.create({
+                  trigger: fade_in_right_stagger,
+                  start: "top bottom",
+                  onEnterBack: () => fade_in_right_anim.restart(),
+                  onLeaveBack: () => fade_in_right_anim.pause(0),
+                });
+              });
+            };   
+        })
     
-        if(!mediaQueryPhonesAndSmallTablets) {
-      
-          const fade_in_right_stagger_anim = gsap.from(".fade-in-right-stagger", {
-                      duration: 1,
-                      x: '-4rem',
-                      opacity: 0,
-                      ease: "power1.inOut",
-                      stagger: {
-                        from: 0,
-                        amount: 0.5
-                      }
-          });
-              
-          fade_in_right_stagger_anim.pause(0);
-                  
-          ScrollTrigger.create({
-                     trigger: '.fade-in-right-stagger',
-                      start: top_pos_animations,
-                      onEnter: () => fade_in_right_stagger_anim.play(),
-                      onLeave: () => fade_in_right_stagger_anim.pause(0),
-          });
-          
-          ScrollTrigger.create({
-                      trigger: '.fade-in-right-stagger',
-                      start: "top bottom",
-                      onEnterBack: () => fade_in_right_stagger_anim.restart(),
-                      onLeaveBack: () => fade_in_right_stagger_anim.pause(0),
-          });
-  
-          if (($('.fade-in-right-stagger')[0].getBoundingClientRect().top) < window.innerHeight) {
-              fade_in_right_stagger_anim.play();
-           }
-        }
-      
-        if(mediaQueryPhonesAndSmallTablets) {
-      
-          const  fade_in_right_staggers = gsap.utils.toArray('.fade-in-right-stagger');
-          fade_in_right_staggers.forEach( fade_in_right_stagger => {
-                  
-          const fade_in_right_anim = gsap.to(fade_in_right_stagger, { x: '0', opacity: '1', duration: 1.5, paused: true });
-                  
-          ScrollTrigger.create({
-            trigger: fade_in_right_stagger,
-            start: top_pos_animations,
-            onEnter: () => fade_in_right_anim.play(),
-          });
-              
-          ScrollTrigger.create({
-            trigger: fade_in_right_stagger,
-            start: "top bottom",
-            onEnterBack: () => fade_in_right_anim.restart(),
-            onLeaveBack: () => fade_in_right_anim.pause(0),
-          });
-        });
-      };       
     }
 
+CSS 
+
+.fade-in-right-stagger {
+	transform: translateX(6rem);
+	opacity: 0;
+}
+
+
+// GSAP - Fade in left
+
+    if($('.fade-in-left').length) {
+        const in_lefts = gsap.utils.toArray('.fade-in-left');
+        in_lefts.forEach( in_left => {
+            
+            const in_left_anim = gsap.to(in_left, { x: '0', opacity: 1, duration: 1, paused: true });
+            
+            ScrollTrigger.create({
+                trigger: in_left,
+                start: top_pos_animations,
+                onEnter: () => in_left_anim.play(),
+            });
+        
+            ScrollTrigger.create({
+                trigger: in_left,
+                start: "top bottom",
+                onEnterBack: () => in_left_anim.restart(),
+                onLeaveBack: () => in_left_anim.pause(0),
+            });
+        
+        });
+    }
+    
+
+ CSS
+
+.fade-in-left {
+	opacity: 0;
+	transform: translateX(-7rem);
+}
+    
+
+
+
+// GSAP - Fade in right
+    
+    if($('.fade-in-right').length) {
+        const in_rights = gsap.utils.toArray('.fade-in-right');
+        in_rights.forEach( in_right => {
+            
+        const in_right_anim = gsap.to(in_right, { x: '0', opacity: 1, duration: 1, paused: true });
+            
+            ScrollTrigger.create({
+                trigger: in_right,
+                start: top_pos_animations,
+                onEnter: () => in_right_anim.play(),
+            });
+        
+            ScrollTrigger.create({
+                trigger: in_right,
+                start: "top bottom",
+                onEnterBack: () => in_right_anim.restart(),
+                onLeaveBack: () => in_right_anim.pause(0),
+            });
+            
+        });
+    };
+
+
+CSS 
+
+.fade-in-right {
+	opacity: 0;
+	transform: translateX(7rem);
+}
+
+ 
+// GSAP - Fade in up
+    
+    if($('.fade-in-up').length) {
+        const fade_in_ups = gsap.utils.toArray('.fade-in-up');
+        fade_in_ups.forEach( fade_in_up => {
+            
+        const fade_in_up_anim = gsap.from(fade_in_up, { y: `${8 * rem}px`, opacity: '1', duration: 1.5, paused: true });
+
+        ScrollTrigger.create({
+            trigger: fade_in_up,
+            start: `top bottom+=${8 * rem}px`,
+            onEnter: () => fade_in_up_anim.play(),
+            onLeave: () => fade_in_up_anim.pause(0),
+        });
+        
+        ScrollTrigger.create({
+            trigger: fade_in_up,
+            start: `top bottom+=${8 * rem}px`,
+            onEnterBack: () => fade_in_up_anim.restart(),
+            onLeaveBack: () => fade_in_up_anim.pause(0),
+        });
+    
+        if ((fade_in_up.getBoundingClientRect().top) < window.innerHeight) {
+            fade_in_up_anim.play();
+        }
+
+      });
+    };
+
+
+
+    // GSAP - Fade in down
+
+    if($('.fade-in-down').length) {
+        const fade_in_downs = gsap.utils.toArray('.fade-in-down');
+        fade_in_downs.forEach( fade_in_down => {
+            
+        const fade_in_down_anim = gsap.from(fade_in_down, { y: `-${8 * rem}px`, opacity: '1', duration: 1.5, paused: true });
+            
+        ScrollTrigger.create({
+            trigger: fade_in_down,
+            start: `top bottom`,
+            end: `bottom+=${8 * rem}px top`,
+            onEnter: () => fade_in_down_anim.play(),
+            onLeave: () => fade_in_down_anim.pause(0),
+        });
+        
+        ScrollTrigger.create({
+            trigger: fade_in_down,
+            start: `top bottom+=${8 * rem}px`,
+            onEnterBack: () => fade_in_down_anim.restart(),
+            onLeaveBack: () => fade_in_down_anim.pause(0),
+        });
+    
+        if ((fade_in_down.getBoundingClientRect().top) < window.innerHeight) {
+            fade_in_down_anim.play();
+        }
+
+      });
+    };
